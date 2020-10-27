@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /pbb3/
+
+RewriteCond %{THE_REQUEST} /pbb3/post\.php\?title=([^\s&]+) [NC]
+RewriteRule ^ %1/%2? [R=302,L,NE]
+
+# internal forward from pretty URL to actual one
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/.]+)/([^/.]+)/?$ post.php?title=$2 [L,QSA]
